@@ -48,8 +48,8 @@ dfa = pd.DataFrame(grouped_df)
 dfa=dfa.pivot(index='sabia', columns='cidade', values='Count')
 dfa["index"] = dfa.index
 
-dfa['Regional BH'] = dfa['Betim'] + dfa['Mateus Leme']+dfa['Contagem']+dfa['Igarapé']+dfa['Juatuba']
-dfa['Regional Pará de Minas'] = dfa['Florestal'] + dfa['Pará de Minas']+dfa['Igaratinga']+dfa['São Joaquim de Bicas']+dfa['São José da Varginha']+dfa['Pequi']
+dfa['Regional SRE Metropolitana B'] = dfa['Betim'] + dfa['Mateus Leme']+dfa['Contagem']+dfa['Igarapé']+dfa['Juatuba']+dfa['São Joaquim de Bicas']
+dfa['Regional Pará de Minas'] = dfa['Florestal'] + dfa['Pará de Minas']+dfa['Igaratinga']+dfa['São José da Varginha']+dfa['Pequi']
 
 
 st.title("Alunos que Conhecem o Campus")
@@ -62,7 +62,7 @@ cols = st.columns([1, 1, 1])
 with st.container():
     cols = st.columns([1, 1, 1])
     with cols[0]:
-        medal_type = st.selectbox('Regional', ['Regional BH', 'Regional Pará de Minas'])
+        medal_type = st.selectbox('Regional', ['Regional SRE Metropolitana B', 'Regional Pará de Minas'])
 
         fig = px.pie(dfa, values=medal_type, names='index',
                      title=f'A regional {medal_type} conhece o campus',
@@ -72,7 +72,7 @@ with st.container():
         st.plotly_chart(fig, use_container_width=True)
 
     with cols[1]:
-        medal_type = st.selectbox('Regional', ['Regional Pará de Minas', 'Regional BH'])
+        medal_type = st.selectbox('Regional', ['Regional Pará de Minas', 'Regional SRE Metropolitana B'])
 
         fig = px.pie(dfa, values=medal_type, names='index',
                      title=f'A regional {medal_type} conhece o campus',
@@ -86,9 +86,8 @@ dfb = pd.DataFrame(grouped_df2)
 dfb=dfb.pivot(index='curso', columns='cidade', values='Count')
 
 dfb["index"] = dfb.index
-dfb['Regional BH'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']
-dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São Joaquim de Bicas']+dfb['São José da Varginha']+dfb['Pequi']
-
+dfb['Regional SRE Metropolitana B'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']+dfb['São Joaquim de Bicas']
+dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São José da Varginha']+dfb['Pequi']
 
 st.title("Alunos que gostariam de fazer curso superior")
 
@@ -103,7 +102,7 @@ with st.container():
     with cols[0]:
 
 
-        opcoes = ["Regional Pará de Minas", "Regional BH"]
+        opcoes = ["Regional Pará de Minas", "Regional SRE Metropolitana B"]
         time1 = st.selectbox("Regional", opcoes, key="t1")
 
         fig = px.pie(dfb, values=time1, names='index',
@@ -119,9 +118,8 @@ dfb = pd.DataFrame(grouped_df2)
 dfb=dfb.pivot(index='motivacao', columns='cidade', values='Count')
 
 dfb["index"] = dfb.index
-dfb['Regional BH'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']
-dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São Joaquim de Bicas']+dfb['São José da Varginha']+dfb['Pequi']
-
+dfb['Regional SRE Metropolitana B'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']+dfb['São Joaquim de Bicas']
+dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São José da Varginha']+dfb['Pequi']
 
 st.title("Motivação dos alunos em fazer curso superior")
 
@@ -133,7 +131,7 @@ cols = st.columns([1, 1, 1])
 
 with st.container():
 
-        opcoes = ["Regional Pará de Minas", "Regional BH"]
+        opcoes = ["Regional Pará de Minas", "Regional SRE Metropolitana B"]
         time1 = st.selectbox("Regional", opcoes, key="t2")
         fig = px.pie(dfb,
                      values=time1,
@@ -150,9 +148,8 @@ dfb = pd.DataFrame(grouped_df2)
 dfb=dfb.pivot(index='explicar', columns='cidade', values='Count')
 
 dfb["index"] = dfb.index
-dfb['Regional BH'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']
-dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São Joaquim de Bicas']+dfb['São José da Varginha']+dfb['Pequi']
-
+dfb['Regional SRE Metropolitana B'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']+dfb['São Joaquim de Bicas']
+dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São José da Varginha']+dfb['Pequi']
 
 st.title("Razão para não fazer um curso superior")
 
@@ -164,7 +161,7 @@ cols = st.columns([1, 1, 1])
 
 with st.container():
 
-        opcoes = ["Regional Pará de Minas", "Regional BH"]
+        opcoes = ["Regional Pará de Minas", "Regional SRE Metropolitana B"]
         time1 = st.selectbox("Regional", opcoes, key="t3")
         fig = px.pie(dfb,
                      values=time1,
@@ -183,11 +180,9 @@ dfb = pd.DataFrame(grouped_df2)
 dfb=dfb.pivot(index='a1', columns='cidade', values='Count')
 
 dfb["index"] = dfb.index
-dfb['Regional BH'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']
-dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São Joaquim de Bicas']+dfb['São José da Varginha']+dfb['Pequi']
-
+dfb['Regional SRE Metropolitana B'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']+dfb['São Joaquim de Bicas']
+dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São José da Varginha']+dfb['Pequi']
 
 st.title("Auxílios mais importantes")
 
 
- 
