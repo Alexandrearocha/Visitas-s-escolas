@@ -21,7 +21,7 @@ df0 = df.rename(columns={'index':'index',
  'Sua idade':'idade',
  'Ano escolar (série)':'ano',
  'Você tem interesse em fazer um Curso Superior?':'curso',
- 'Qual curso superior você tem interesse?':'curso',
+ 'Qual curso superior você tem interesse?':'curso_a',
  'Marque qual motivação pessoal você tem para fazer um Curso Superior: ':'motivacao',
  'Marque abaixo a opção que possa explicar sua escolha: (permitido marcar mais de uma opção)':'explicar',
  'Você sabia que a Universidade Federal de Viçosa (UFV) possui um campus no município de Florestal-MG?  ':'sabia',
@@ -52,17 +52,12 @@ dfa['Regional BH'] = dfa['Betim'] + dfa['Mateus Leme']+dfa['Contagem']+dfa['Igar
 dfa['Regional Pará de Minas'] = dfa['Florestal'] + dfa['Pará de Minas']+dfa['Igaratinga']+dfa['São Joaquim de Bicas']+dfa['São José da Varginha']+dfa['Pequi']
 
 
-st.title("Visão Geral")
+st.title("Alunos que Conhecem o Campus")
 
 
 st.dataframe(dfa)
 
 cols = st.columns([1, 1, 1])
-
-
-
-
-
 
 with st.container():
     cols = st.columns([1, 1, 1])
@@ -86,3 +81,113 @@ with st.container():
         fig.update_traces(marker=dict(colors=['#e74c3c', '#3498db']))
         st.plotly_chart(fig, use_container_width=True)
 
+grouped_df2 = df0.groupby(["cidade","curso"]).size().reset_index(name="Count")
+dfb = pd.DataFrame(grouped_df2)
+dfb=dfb.pivot(index='curso', columns='cidade', values='Count')
+
+dfb["index"] = dfb.index
+dfb['Regional BH'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']
+dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São Joaquim de Bicas']+dfb['São José da Varginha']+dfb['Pequi']
+
+
+st.title("Alunos que gostariam de fazer curso superior")
+
+
+st.dataframe(dfb)
+
+cols = st.columns([1, 1, 1])
+
+
+with st.container():
+    cols = st.columns([1, 1, 1])
+    with cols[0]:
+
+
+        opcoes = ["Regional Pará de Minas", "Regional BH"]
+        time1 = st.selectbox("Regional", opcoes, key="t1")
+
+        fig = px.pie(dfb, values=time1, names='index',
+                     title=f'A regional {time1} conhece o campus',
+                     height=150, width=100)
+        fig.update_layout(margin=dict(l=20, r=20, t=30, b=0), )
+        fig.update_traces(marker=dict(colors=['#e74c3c', '#3498db']))
+        st.plotly_chart(fig, use_container_width=True)
+
+
+grouped_df2 = df0.groupby(["cidade","motivacao"]).size().reset_index(name="Count")
+dfb = pd.DataFrame(grouped_df2)
+dfb=dfb.pivot(index='motivacao', columns='cidade', values='Count')
+
+dfb["index"] = dfb.index
+dfb['Regional BH'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']
+dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São Joaquim de Bicas']+dfb['São José da Varginha']+dfb['Pequi']
+
+
+st.title("Motivação dos alunos em fazer curso superior")
+
+
+st.dataframe(dfb)
+
+cols = st.columns([1, 1, 1])
+
+
+with st.container():
+
+        opcoes = ["Regional Pará de Minas", "Regional BH"]
+        time1 = st.selectbox("Regional", opcoes, key="t2")
+        fig = px.pie(dfb,
+                     values=time1,
+                     names='index',
+                     title='Distribuição Básica')
+        fig.update_traces(textinfo='value+label',  # Exibe valor + nome da categoria
+                          textfont_size=14)
+st.plotly_chart(fig, use_container_width=True)
+
+
+
+grouped_df2 = df0.groupby(["cidade","explicar"]).size().reset_index(name="Count")
+dfb = pd.DataFrame(grouped_df2)
+dfb=dfb.pivot(index='explicar', columns='cidade', values='Count')
+
+dfb["index"] = dfb.index
+dfb['Regional BH'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']
+dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São Joaquim de Bicas']+dfb['São José da Varginha']+dfb['Pequi']
+
+
+st.title("Razão para não fazer um curso superior")
+
+
+st.dataframe(dfb)
+
+cols = st.columns([1, 1, 1])
+
+
+with st.container():
+
+        opcoes = ["Regional Pará de Minas", "Regional BH"]
+        time1 = st.selectbox("Regional", opcoes, key="t3")
+        fig = px.pie(dfb,
+                     values=time1,
+                     names='index',
+                     title='Distribuição Básica')
+        fig.update_traces(textinfo='value+label',  # Exibe valor + nome da categoria
+                          textfont_size=14)
+st.plotly_chart(fig, use_container_width=True)
+
+
+
+
+
+grouped_df2 = df0.groupby(["cidade","a1"]).size().reset_index(name="Count")
+dfb = pd.DataFrame(grouped_df2)
+dfb=dfb.pivot(index='a1', columns='cidade', values='Count')
+
+dfb["index"] = dfb.index
+dfb['Regional BH'] = dfb['Betim'] + dfb['Mateus Leme']+dfb['Contagem']+dfb['Igarapé']+dfb['Juatuba']
+dfb['Regional Pará de Minas'] = dfb['Florestal'] + dfb['Pará de Minas']+dfb['Igaratinga']+dfb['São Joaquim de Bicas']+dfb['São José da Varginha']+dfb['Pequi']
+
+
+st.title("Auxílios mais importantes")
+
+
+ 
